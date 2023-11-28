@@ -29,7 +29,10 @@ function filterUnique(array)
 // присмотритесь к методу .reduce
 function calculateSalaryDifference(array)
 {
-	function getMin(acc, item, index, arr)
+    if (array === undefined || array.length == 0) {
+        return false;
+    }
+	  function getMin(acc, item, index, arr)
     {
         const min = Math.min(acc, item);
         return min;
