@@ -86,16 +86,6 @@ class Queue
     }
 }
 
-let q = new Queue();
-for (let i = 1; i <= 10; i++) {
-    q.enqueue(i);
-}
-console.log(q.peek());
-console.log(q.length);
-while (!q.isEmpty) {
-    console.log(q.dequeue());
-}
-
 module.exports = {
     Point,
     Point3D,
