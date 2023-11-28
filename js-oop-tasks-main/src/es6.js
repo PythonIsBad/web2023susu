@@ -16,10 +16,10 @@ function fioToName(fio)
 // присмотритесь к коллекции "Set"
 function filterUnique(array)
 {
-	const set = new Set();
-	for(let i = 0; i < array.length; i++)
-	    set.add(array[i]);
-	return set;
+    const set = new Set();
+    for(let i = 0; i < array.length; i++)
+	set.add(array[i]);
+    return Array.from(set);
 }
 
 // Задача: разница зарплат
