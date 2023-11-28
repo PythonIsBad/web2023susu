@@ -8,7 +8,7 @@
 function fioToName(fio)
 {
     fio = fio.split(" ");
-    return fio[1] + " " + fio[2];
+    return fio[1] + " " + fio[0];
 }
 
 // преобразуйте массив чисел так, чтобы в нем остались только
