@@ -84,6 +84,11 @@ function fibonacci(n)
  */
 function getOperationFn(initialValue, operatorFn)
 {
+  if (typeof operatorFn === 'undefined' || operatorFn === null)
+  {
+    function cnst(x) { return initialValue; }
+    return cnst;
+  }
 	let x = initialValue;
 	function plus(y) {
 		x = x + y;
