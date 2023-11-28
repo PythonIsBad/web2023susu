@@ -43,13 +43,15 @@ function factorial(n)
 //Напишите функцию, которая определяет, является ли число двойкой, возведенной в степень
 function isBinary(n)
 {
-	while (n > 0)
-	{
-		if (n % 2 != 0)
-			return false;
-		n /= 2;
-	}
-	return true;
+    if(n <= 0)
+        return false;
+    while (n > 1)
+    {
+	if (n % 2 != 0)
+	    return false;
+	n /= 2;
+    }
+    return true;
 }
 
 //Напишите функцию, которая находит N-е число Фибоначчи
