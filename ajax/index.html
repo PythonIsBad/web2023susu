@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>AJAX</title>
+        <link href="/output.css" rel="stylesheet">
+    </head>
+    <body class="relative w-full min-h-screen bg-green dark:bg-darkGreen">
+        <!-- Modal window -->
+        <div id="modal" class="w-full h-full" hidden>
+            <div id="modal__overlay" class="fixed w-full h-full bg-black opacity-40 z-10"></div>
+            <!--<div id="modal__window" class="fixed left-1/3 w-1/3 top-1_5 h-3_5 bg-green z-20 rounded-3xl flex flex-col items-center py-20 dark:bg-gray">-->
+			<div id="modal__window" class="fixed left-1/3 w-1/3 top:20% height:60% bg-green z-20 rounded-3xl flex flex-col items-center py-20 dark:bg-gray">
+                <div id="modal__header" class="w-full flex justify-end">
+                    <img id="modal__close-button" class="modal__close-button w-8 h-8 self-center mr-20" src="./assets/close.png" alt="delete">
+                </div>
+
+                <label for="modal__user-input" class="text-salad text-3xl">Author:</label>
+                <!--<textarea class="w-1/3 mb-10 bg-salad h-16" type="text" name="name" id="modal__user-input"></textarea>-->
+                <select class="w-1/3 mb-10 bg-salad font-bold" name="name" id="modal__user-input">
+                    <option disabled selected hidden value="">select...</option>
+                </select>
+
+                <label for="modal__title-input" class="text-salad text-3xl">Post Title:</label>
+                <textarea class="w-2/3 mb-10 bg-salad h-16" type="text" name="title" id="modal__title-input"></textarea>
+
+                <label for="modal__body-input" class="text-salad text-3xl">Post text:</label>
+                <textarea class="w-2/3 mb-20 bg-salad h-32" type="text" name="body" id="modal__body-input"></textarea>
+
+                <button id="modal__submit-button" type="button" class="modal__button w-1/4 rounded-2xl bg-salad text-black font-bold h-10">Save post</button>
+            </div>
+            <div id="repeat-modal-window" class="" hidden>
+                <div class="fixed left-1/3 top-1/4 w-1/3 h-1/2 max-h-fit z-20 bg-green rounded-3xl flex flex-col space-y-4 items-center py-20 dark:bg-gray">
+                    <div id="repeat-modal-window__header" class="w-full flex justify-end">
+                        <img id="repeat-modal-window__close-button" class="repeat-modal-window__close-button w-8 h-8 self-center mr-20" src="./assets/white_сlose.png" alt="delete">
+                    </div>
+                    <div id="repeat-modal-window__title" class="w-full flex flex-col justify-items-center"></div>
+                    <button id="repeat-modal-window__submit-button" type="button" class="repeat-modal-window__button w-1/4 rounded-2xl bg-salad text-black font-light dark:bg-gray dark:text-salad">Yes</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nav section -->
+        <nav class="flex flex-row items-center justify-center relative mx-auto bg-green shadow dark:bg-darkGreen">
+            <div class="container my-2 space-y-2 flex flex-col items-center justify-between md:flex-row">
+                <div class="px-10">
+            		<button id="create-post-button" class="h-fit w-fit rounded-2xl bg-darkGreen text-white font-medium px-3 py-2 my-10 justify-self-center text-center text-3xl transition ease-in-out delay-0 dark:bg-green dark:text-salad" type="button">Add post</button>
+                </div>
+                <!--<div class="flex space-y-2 flex-col md:flex-row md:space-x-20 md:space-y-0">
+                    <a class="font-light text-salad font-sans justify-self-center dark:hover:text-gray-300" href="https://google.com">google</a>
+                </div>-->
+            </div>        
+        </nav>
+
+        <!-- Posts section -->
+        <section id="posts" class="mx-auto container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            <div id="loader" class="absolute justify-self-center mt-44" hidden>
+                <!-- https://loading.io/css/ -->
+                <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div> 
+            </div>
+            <!-- Posts from ajax -->
+        </section>
+        
+        <!-- Dark mode button -->
+        <button id="dark-mode-switch-button" class="fixed top-2 right-8 w-11 h-11" type="button" >
+            <img src="./assets/light.png" alt="light">
+            <img src="./assets/dark.png" alt="dark" hidden>
+        </button>
+
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script type="module" src="./userService.js"></script>
+        <script type="module" src="./postService.js"></script>
+        <script type="module" src="./main.js"></script>
+    </body>
+</html>
