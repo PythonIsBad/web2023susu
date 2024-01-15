@@ -1,22 +1,19 @@
 //Напишите функцию, которая проверяет, является ли число целым используя побитовые операторы
-function isInteger(n)
-{
-	var x = parseFloat(n);
-	return !isNaN(n) && (x | 0) === x;
+function isInteger(n) {
+	let x = parseFloat(n);
+	return !isNaN(n) && (n | 0) === x;
 }
 
 //Напишите функцию, которая возвращает массив четных чисел от 2 до 20 включительно
-function even()
-{
-	const a = [];
+function even() {
+	let a = [];
 	for (let i = 2; i <= 20; i += 2)
 		a.push(i);
 	return a;
 }
 
 //Напишите функцию, считающую сумму чисел до заданного используя цикл
-function sumTo(n)
-{
+function sumTo(n) {
 	let sum = 0;
 	for (let i = 0; i <= n; i++)
 		sum += i;
@@ -24,50 +21,60 @@ function sumTo(n)
 }
 
 //Напишите функцию, считающую сумму чисел до заданного используя рекурсию
-function recSumTo(n)
-{
-	if (n < 1)
+function recSumTo(n) {
+	if(n >=0)
+		return recSum(n);
+	else
+		return recSumNegative(n)
+}
+
+function recSum(n){
+	if(n<1)
 		return 0;
-	return n + recSumTo(n - 1);
+	return recSum(n-1) + n;
+}
+
+function recSumNegative(n){
+	if(n>=0)
+		return 0;
+	return recSumNegative(n+1) + n;
 }
 
 //Напишите функцию, считающую факториал заданного числа
-function factorial(n)
-{
-	let a = 1;
-	for (let i = 1; i <= n; i++)
-		a *= i;
-	return a;
+function factorial(n) {
+	let a = n;
+	while(a>1){
+		n = n * (a-1);
+		a -= 1;
+	}
+	return n;
 }
 
 //Напишите функцию, которая определяет, является ли число двойкой, возведенной в степень
-function isBinary(n)
-{
-    if(n <= 0)
+function isBinary(n) {
+    if(n==0)
         return false;
-    while (n > 1)
-    {
-	if (n % 2 != 0)
-	    return false;
-	n /= 2;
-    }
-    return true;
+	while(n>2)
+	{
+		if(n%2!=0)
+			return false;
+		n/=2;
+	}
+	return true;
 }
 
 //Напишите функцию, которая находит N-е число Фибоначчи
-function fibonacci(n)
-{
-	if (n == 0)
-		return 0;
-	if (n < 3)
+function fibonacci(n) {
+	let a=1, b=1, sum = 0;
+	if(n>0 && n<3)
 		return 1;
-	let a = 1, b = 1, sum = 0;
-	for (let i = 3; i <= n; i++)
-	{
-		sum = a + b;
-		a = b;
-		b = sum;
-	}
+	if(n>=3)
+		for(let i=3;i<=n;i++)
+		{
+			sum=a+b;
+			a=b;
+			b=sum;
+		}
 	return sum;
 }
 
@@ -82,38 +89,17 @@ function fibonacci(n)
  * console.log(sumFn(5)) - 15
  * console.log(sumFn(3)) - 18
  */
-function getOperationFn(initialValue, operatorFn)
-{
-  if (typeof operatorFn === 'undefined' || operatorFn === null)
-  {
-    function cnst(x) { return initialValue; }
-    return cnst;
-  }
-	let x = initialValue;
-	function plus(y) {
-		x = x + y;
-		return x;
+function getOperationFn(initialValue, operatorFn) {
+	if(typeof operatorFn ==='undefined' || operatorFn === null)
+	{
+	    function delta(){return initialValue;}
+		return delta;
 	}
-	function minus(y) {
-		x = x - y;
-		return x;
+	function alfa(beta){
+		initialValue = operatorFn(initialValue, beta);
+		return initialValue;
 	}
-	function mult(y) {
-		x = x * y;
-		return x;
-	}
-	function div(y) {
-		x = x / y;
-		return x;
-	}
-	if (operatorFn(1, 2) == 3)
-		return plus;
-	if (operatorFn(1, 2) == -1)
-		return minus;
-	if (operatorFn(1, 2) == 2)
-		return mult;
-	if (operatorFn(1, 2) == 0.5)
-		return div;
+	return alfa;
 }
 
 /**
@@ -132,17 +118,15 @@ function getOperationFn(initialValue, operatorFn)
  * console.log(generator()); // 7
  * console.log(generator()); // 9
  */
-function sequence(start, step)
-{
-	let x = 0, h = 1;
-	if (start !== undefined)
-		x = start;
-	if (step !== undefined)
-		h = step;
-	x = x - h;
-	function generator() {
-		x = x + h;
-		return x;
+function sequence(start, step) {
+	if(start === undefined)
+		start = 0;
+	if(step === undefined)
+		step = 1;
+	start = start - step;
+	function generator(){
+		start = start + step;
+		return start;
 	}
 	return generator;
 }
@@ -163,6 +147,8 @@ function sequence(start, step)
  */
 function deepEqual(firstObject, secondObject)
 {
+    if (firstObject !== firstObject && secondObject !== secondObject)
+        return true;
 	if (firstObject === secondObject) {
 		return true;
 	}
@@ -183,16 +169,15 @@ function deepEqual(firstObject, secondObject)
 		return false;
 }
 
-module.exports =
-{
-	isInteger,
-	even,
-	sumTo,
-	recSumTo,
-	factorial,
-	isBinary,
-	fibonacci,
-	getOperationFn,
-	sequence,
-	deepEqual,
+module.exports = {
+    isInteger,
+    even,
+    sumTo,
+    recSumTo,
+    factorial,
+    isBinary,
+    fibonacci,
+    getOperationFn,
+    sequence,
+    deepEqual,
 };
