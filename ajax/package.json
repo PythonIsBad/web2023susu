@@ -1,0 +1,11 @@
+{
+  "name": "ajax",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts":
+  {
+    "vite": "vite",
+    "tailwind": "npx tailwindcss -i ./input.css -o ./output.css --watch"
+  }
+}
